@@ -20,18 +20,27 @@ for match in matches:
     print("5\nCategory:", matches[i].category, "\n")
     print("6\nRule Issue Type:", matches[i].ruleIssueType, "\n")
     print("7\nSentence:", matches[i].sentence, "\n")
-    print(f"8\nID [{len(matches[i].replacements)} Suggestions]:\n", matches[i].ruleId, matches[i].replacements, "\n")
+    print(
+        f"8\nID [{len(matches[i].replacements)} Suggestions]:\n",
+        matches[i].ruleId,
+        matches[i].replacements,
+        "\n",
+    )
     print("9\nMatche:\n", matches[i])
     print("-----------------------------------------------------------------")
     i += 1
 
-print("\n##############################################################################################################")
+print(
+    "\n##############################################################################################################"
+)
 
 print("Number of mistakes:\t", len(matches))
 print("Input text:\t\t", text)
 print("Auto Correted:\t\t", tool.correct(text))
 print("Auto Correted:\t\t", language_tool_python.utils.correct(text, matches))
 
-print("##############################################################################################################")
+print(
+    "##############################################################################################################"
+)
 
 tool.close()  # Call `close()` to shut off the server when you're done.
