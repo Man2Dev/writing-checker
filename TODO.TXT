@@ -1,0 +1,6 @@
+# TODO suggested answers to Auto corrent
+# TODO wrod count (250)
+# TODO Paragraphs Counter
+# TODO timer for Essay
+# TODO linking words comma
+# TODO select sentences
