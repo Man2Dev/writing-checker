@@ -34,8 +34,4 @@ print("Auto Correted:\t\t", language_tool_python.utils.correct(text, matches))
 
 print("##############################################################################################################")
 
-re = get_match_ordered_dict()
-print(re)
-
-
 tool.close()  # Call `close()` to shut off the server when you're done.
