@@ -12,7 +12,8 @@ print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 # printing all mistakes
 i = 0
 for match in matches:
-    print(f"\nMatch {i+1}:\n")
+    # print(f"\nMatch {i+1}:\n")
+    # errText
     print("1\nMessage:\n", match.message, "\n")
     print("2\nOffset:", matches[i].offsetInContext, "\n")
     print("3\nerrorLength:", matches[i].errorLength, "\n")
@@ -22,12 +23,13 @@ for match in matches:
     print("7\nSentence:", matches[i].sentence, "\n")
     print(
         f"8\nID [{len(matches[i].replacements)} Suggestions]:\n",
+        # ruleID
         matches[i].ruleId,
         matches[i].replacements,
         "\n",
     )
-    print("9\nMatche:\n", matches[i])
-    print("-"*10)
+    # print("9\nMatche:\n", matches[i])
+    print("-" * 90)
     i += 1
 
 print("\n" + 20 * "#")
