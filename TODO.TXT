@@ -7,4 +7,4 @@
 
 # DB
 Date
-Number of words, Paragraphs, sentences, mistakes written
+Number of words, Paragraphs, sentences

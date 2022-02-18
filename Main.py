@@ -25,7 +25,7 @@ for match in matches:
     print("5\nCategory:", matches[i].category, "\n")
     # ruleIssue
     print("6\nRule Issue Type:", matches[i].ruleIssueType, "\n")
-    # entence
+    # sentence
     print("7\nSentence:", matches[i].sentence, "\n")
     # numberSuggestion, suggestion
     print(
@@ -39,9 +39,11 @@ for match in matches:
     i += 1
 
 print("\n" + 110 * "#")
-
+# numberMistakes
 print("Number of mistakes:\t", len(matches))
+# inputText
 print("Input text:\t\t", text)
+# autoCorreted
 print("Auto Correted:\t\t", tool.correct(text))
 print("Auto Correted:\t\t", language_tool_python.utils.correct(text, matches))
 
