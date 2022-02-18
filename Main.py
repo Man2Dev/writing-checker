@@ -12,41 +12,31 @@ print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 # printing all mistakes
 i = 0
 for match in matches:
-    #print(f"\nMatch {i+1}:\n")
-    # err text
+    print(f"\nMatch {i+1}:\n")
     print("1\nMessage:\n", match.message, "\n")
-    # errOffset
     print("2\nOffset:", matches[i].offsetInContext, "\n")
-    # errLength
     print("3\nerrorLength:", matches[i].errorLength, "\n")
-    # context
     print("4\ncontext:", matches[i].context, "\n")
-    # category
     print("5\nCategory:", matches[i].category, "\n")
-    # ruleIssue
     print("6\nRule Issue Type:", matches[i].ruleIssueType, "\n")
-    # sentence
     print("7\nSentence:", matches[i].sentence, "\n")
-    # numberSuggestion, suggestion
     print(
         f"8\nID [{len(matches[i].replacements)} Suggestions]:\n",
         matches[i].ruleId,
         matches[i].replacements,
         "\n",
     )
-    #print("9\nMatche:\n", matches[i])
-    print("-" * 90)
+    print("9\nMatche:\n", matches[i])
+    print("-"*10)
     i += 1
 
-print("\n" + 110 * "#")
-# numberMistakes
+print("\n" + 20 * "#")
+
 print("Number of mistakes:\t", len(matches))
-# inputText
 print("Input text:\t\t", text)
-# autoCorreted
 print("Auto Correted:\t\t", tool.correct(text))
 print("Auto Correted:\t\t", language_tool_python.utils.correct(text, matches))
 
-print(110 * "#")
+print(30 * "#")
 
 tool.close()  # Call `close()` to shut off the server when you're done.
