@@ -4,3 +4,7 @@
 # TODO timer for Essay
 # TODO linking words comma
 # TODO select sentences
+
+# DB
+Date
+Number of words, Paragraphs, sentences, mistakes written
