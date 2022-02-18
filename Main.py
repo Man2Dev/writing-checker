@@ -27,16 +27,16 @@ for match in matches:
         "\n",
     )
     print("9\nMatche:\n", matches[i])
-    print("-" * 70)
+    print("-"*10)
     i += 1
 
-print("\n" + 110 * "#")
+print("\n" + 20 * "#")
 
 print("Number of mistakes:\t", len(matches))
 print("Input text:\t\t", text)
 print("Auto Correted:\t\t", tool.correct(text))
 print("Auto Correted:\t\t", language_tool_python.utils.correct(text, matches))
 
-print(110 * "#")
+print(30 * "#")
 
 tool.close()  # Call `close()` to shut off the server when you're done.
