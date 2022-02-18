@@ -1,7 +1,7 @@
 import sqlite3
 
 # con = sqlite3.connect("database.db")
-conn.execute("PRAGMA foreign_keys = 1")
+con.execute("PRAGMA foreign_keys = 1")
 # cursor = con.cursor()
 
 # cursor.executescript(
@@ -39,38 +39,38 @@ conn.execute("PRAGMA foreign_keys = 1")
 #     """
 # )
 
-# # def add_exam(
-# #     ErrorText, ErrorOffset, ErrorLength, image,
-# #     Context, Category, ruleIssue, sentence,
-# #     ruleID, numberSuggestions, Suggestions, MistakesNumber,
-# #     inputText, CorrectAnswer, Created, finished,
-# # ):
+# def add_exam(
+#     ErrorText, ErrorOffset, ErrorLength, image,
+#     Context, Category, ruleIssue, sentence,
+#     ruleID, numberSuggestions, Suggestions, MistakesNumber,
+#     inputText, CorrectAnswer, Created, finished,
+# ):
 
-# #     cursor.execute(
-# #         """INSERT INTO exams (ErrorText, ErrorOffset, ErrorLength, image, Context,
-# #         Category, ruleIssue, sentence, ruleID, numberSuggestions, Suggestions,
-# #         MistakesNumber, inputText, CorrectAnswer, Created, finished) 
-# #         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-# #         (
-# #             ErrorText,
-# #             ErrorOffset,
-# #             ErrorLength,
-# #             image,
-# #             Context,
-# #             Category,
-# #             ruleIssue,
-# #             sentence,
-# #             ruleID,
-# #             numberSuggestions,
-# #             Suggestions,
-# #             MistakesNumber,
-# #             inputText,
-# #             CorrectAnswer,
-# #             Created,
-# #             finished,
-# #         ),
-# #     )
-# #     con.commit()
+#     cursor.execute(
+#         """INSERT INTO exams (ErrorText, ErrorOffset, ErrorLength, image, Context,
+#         Category, ruleIssue, sentence, ruleID, numberSuggestions, Suggestions,
+#         MistakesNumber, inputText, CorrectAnswer, Created, finished)
+#         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+#         (
+#             ErrorText,
+#             ErrorOffset,
+#             ErrorLength,
+#             image,
+#             Context,
+#             Category,
+#             ruleIssue,
+#             sentence,
+#             ruleID,
+#             numberSuggestions,
+#             Suggestions,
+#             MistakesNumber,
+#             inputText,
+#             CorrectAnswer,
+#             Created,
+#             finished,
+#         ),
+#     )
+#     con.commit()
 
 
 
@@ -88,7 +88,7 @@ Phone           TEXT,
 Address         TEXT,
 City            TEXT,
 Notes           TEXT,
-Active_Status   TEXT    NOT NULL)''')      
+Active_Status   TEXT    NOT NULL)''')
 
 cur.execute('''CREATE TABLE IF NOT EXISTS Work_Done
 (ID INTEGER PRIMARY KEY,

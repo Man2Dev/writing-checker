@@ -46,9 +46,9 @@ print("\n" + 110 * "#")
 print("Number of mistakes:\t", len(matches))
 # inputText
 print("Input text:\t\t", text)
-# autoCorreted
-print("Auto Correted:\t\t", tool.correct(text))
-print("Auto Correted:\t\t", language_tool_python.utils.correct(text, matches))
+# autoCorrected
+print("Auto Corrected:\t\t", tool.correct(text))
+print("Auto Corrected:\t\t", language_tool_python.utils.correct(text, matches))
 
 print(110 * "#")
 
