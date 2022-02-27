@@ -1,6 +1,6 @@
 import language_tool_python
 
-from database import add_exam
+# from database import insert_exam
 
 tool = language_tool_python.LanguageTool("en-US")
 
