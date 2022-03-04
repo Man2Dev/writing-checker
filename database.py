@@ -40,7 +40,7 @@ conn.commit()
 # create an instance of Exams table and return its id
 def insert_exam(entities):
     cur.execute(
-        "INSERT INTO Exams(question_name, question, MistakesNumber, user_answer, CorrectAnswer, Created) VALUES(?, ?, ?, ?, ?, ?)",
+        "INSERT INTO Exams(question_name, question, MistakesNumber, user_answer, CorrectAnswer, Created, finished) VALUES(?, ?, ?, ?, ?, ?, ?)",
         entities,
     )
     conn.commit()
@@ -75,7 +75,7 @@ def delete_match(pk):
     conn.commit()
 
 
-# return a list of the matches of a specific exam using ExamID (foreign key)
+# return a list of the matches of a specific exam using EID
 def fetch_matches(fk):
     cur.execute("SELECT * FROM Match WHERE EID = " + str(fk))
     rows = cur.fetchall()

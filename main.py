@@ -6,16 +6,16 @@ from database import insert_exam, insert_match
 
 tool = language_tool_python.LanguageTool("en-US")
 
-question_name = input("Please enter your question name: ")
-question = input("Please enter your question: ")
-answer = input("Please enter your answer: ")
+question_name = ""
+question = ""
+answer = ""
 
 matches = tool.check(answer)
 miatakes_number = len(matches)
 autoCorrected = tool.correct(answer)
 created = datetime.now()
 
-exam = (question_name, question, miatakes_number, answer, autoCorrected, created)
+exam = (question_name, question, miatakes_number, answer, autoCorrected, created, created)
 exam_id = insert_exam(exam)
 
 
