@@ -1,15 +1,7 @@
-import time
 from tkinter import *
 from tkinter import messagebox
-from tkinter import Tk, Text
-import tkinter as tk
-from tkinter import Menu
-from tkinter.filedialog import *
-from tkinter.messagebox import *
-from tkinter import font# , colorchooser, filedialog, messagebox
-from datetime import date
-from datetime import datetime
 from tkinter import ttk
+from tkinter import Menu
 from datetime import datetime
 import language_tool_python
 from database import fetch_exams
@@ -22,7 +14,7 @@ ws= Tk()
 ws.geometry('1000x250+500+200')
 ws.title('Exams')
 ws.config(bg='#223441')
-# ws.resizable(width=False, height=False)
+ws.resizable(width=False, height=False)
 # w/h (fill)
 h1=5
 w1=40
@@ -45,24 +37,15 @@ temp_date_time_finished= ""
 global realCount
 realCount= len(fetch_exams())
 
-# ws = Tk()
-# ws.geometry('1000x250+500+200')
-# ws.title('Exams')
-# ws.config(bg='#223441')
-# lb.delete(0,'end')
-
 def newEx():
     name= my_entry.get()
     if name != "" and len(text.get("1.0", "end-1c")) != 0:
         globals()['realCount']+= 1
         # save the exam name
-        # globals()['temp_exam_question_name']= name
         temp_exam_question_name= name
         # save the exam question
-        # globals()['temp_exam_question']= text.get("1.0", "end-1c")
         temp_exam_question= text.get("1.0", "end-1c")
         # save start date/time of start of exam
-        # globals()['temp_date_time_created']= datetime.now()
         temp_date_time_created= datetime.now()
         # deleting entrys from GUI
         my_entry.delete(0, "end")
@@ -342,49 +325,9 @@ def startExam(temp_exam_question_name, temp_exam_question, temp_date_time_create
         temp_exam_question_name
         temp_exam_question
         temp_date_time_created
-        # globals()['temp_date_time_finished']= datetime.now()
         temp_date_time_finished= datetime.now()
-        # globals()['temp_exam_answer']= text_box.get(1.0, "end-1c")
         temp_exam_answer= text_box.get(1.0, "end-1c")
         postExam(temp_exam_question_name, temp_exam_question, temp_exam_answer, temp_date_time_created, temp_date_time_finished)
-        # matches= tool.check(temp_exam_answer)
-        # miatakes_number= len(matches)
-        # autoCorrected= tool.correct(temp_exam_answer)
-
-        # exam= (temp_exam_question_name, temp_exam_question, miatakes_number, temp_exam_answer, autoCorrected, temp_date_time_created, temp_date_time_finished)
-        # exam_id= insert_exam(exam)
-
-
-        # for match in matches:
-        #     errText= match.message
-        #     errOffset= match.offsetInContext
-        #     errLength= match.errorLength
-        #     context= match.context
-        #     category= match.category
-        #     ruleIssue= match.ruleIssueType
-        #     sentence= match.sentence
-        #     numberSuggestions= len(match.replacements)
-        #     ruleID= match.ruleId
-        #     Suggestions= match.replacements
-
-        #     m= (
-        #         errText,
-        #         errOffset,
-        #         errLength,
-        #         context,
-        #         category,
-        #         ruleIssue,
-        #         sentence,
-        #         ruleID,
-        #         numberSuggestions,
-        #         str(Suggestions),
-        #         exam_id,
-        #     )
-
-        #     insert_match(m)
-
-        # print("results in database.db!!!")
-        # tool.close()
         window.destroy()
         updateList()
         show()
@@ -412,7 +355,7 @@ def startExam(temp_exam_question_name, temp_exam_question, temp_date_time_create
     pane1= Frame(pane, bg="#345")
     pane1.pack(side= RIGHT, fill= BOTH, anchor='e', expand= True)
 
-    questions= tk.Label(pane1, bg="#f5f5f5", bd=4, relief=RAISED, text= temp_exam_question, font=('Digital-7', 14), wraplength=w, height=5, background="#345", foreground= "white", justify='left')
+    questions= Label(pane1, bg="#f5f5f5", bd=4, relief=RAISED, text= temp_exam_question, font=('Digital-7', 14), wraplength=w, height=5, background="#345", foreground= "white", justify='left')
     questions.place(relx=0.1, rely=0.5, relheight=0.4, relwidth=0.8)
     questions.pack(side= BOTTOM, expand= True, fill='x', anchor="w")
 
