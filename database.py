@@ -31,7 +31,11 @@ ruleID VARCHAR,
 numberSuggestions INTEGER,
 Suggestions VARCHAR,
 EID             INT,
-FOREIGN KEY (EID) REFERENCES Exams (EID))"""
+
+CONSTRAINT fk_exam
+FOREIGN KEY (EID) REFERENCES Exams (EID)
+ON DELETE CASCADE)
+"""
 )
 
 conn.commit()
@@ -62,7 +66,7 @@ def fetch_exams():
 
 # delete a Exam by its id
 def delete_exam(pk):
-    cur.execute("DELETE FROM Exams WHERE id= " + str(pk))
+    cur.execute("DELETE FROM Exams WHERE EID= " + str(pk))
 
     # matches = fetch_matches(pk)
     # for match in matches:
@@ -96,3 +100,25 @@ def fetch_matches(fk):
         matches.append(row)
 
     return matches
+
+
+# return number of occurence of a word in the selected exam
+def number_of_suggestions(exam_id, word):
+    cur.execute(f"SELECT Suggestions FROM Match WHERE EID = '{exam_id}' AND Suggestions LIKE '%{word}%' AND numberSuggestions = 1")
+    rows = cur.fetchall()
+    return len(rows)
+
+delete_exam(1)
+
+
+# return a dictionary of each ruleIssue and number of its occurence 
+def number_of_ruleIssues(exam_id):
+    cur.execute(f"SELECT ruleIssue, COUNT(*) as COUNT from Match GROUP BY ruleIssue")
+    rows = cur.fetchall()
+    return dict(rows)
+
+
+# d = {'misspelling': 2, 'typographical': 1}
+
+# print(d['misspelling'])
+
