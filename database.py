@@ -60,6 +60,17 @@ def fetch_exams():
     return exams
 
 
+# delete a Exam by its id
+def delete_exam(pk):
+    cur.execute("DELETE FROM Exams WHERE id= " + str(pk))
+
+    # matches = fetch_matches(pk)
+    # for match in matches:
+    #     delete_match(match.id)
+
+    conn.commit()
+
+
 # create an instance of Match table
 def insert_match(entities):
     cur.execute(
