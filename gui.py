@@ -4,17 +4,16 @@ from tkinter import Menu, messagebox, ttk
 
 import language_tool_python
 
-from database import (delete_exam, fetch_exams, fetch_matches, insert_exam,
-                      insert_match, number_of_suggestions)
+from database import (delete_exam, fetch_exams, fetch_matches, insert_exam, insert_match, number_of_suggestions)
 
 tool = language_tool_python.LanguageTool("en-US")
-
 
 ws = Tk()
 ws.geometry("1100x300+410+200")
 ws.title("Exams")
 ws.config(bg="#223441")
 ws.resizable(width=False, height=False)
+# ws.wm_attributes("-topmost", 1)
 # w/h (fill)
 h1 = 5
 w1 = 45
@@ -126,13 +125,10 @@ def postExam(
 def openSelected():
     reslist = list()
     seleccion = lb.curselection()
-    if (checkBox.get() == 1):
-        checkSuggestions(my_word.get())
-    else:
-        for i in seleccion:
-            entrada = lb.get(i)
-            reslist.append(entrada)
-        launch(reslist)
+    for i in seleccion:
+        entrada = lb.get(i)
+        reslist.append(entrada)
+    launch(reslist)
 
 
 def deleteSelected():
@@ -155,10 +151,10 @@ def checkSuggestions(word):
         entrada = lb.get(j)
         reslist.append(entrada)
     for var in reslist:
-        try:
-            print(number_of_suggestions(int(str(var).split(")")[0]), word))
-        except:
-            print()
+        print(number_of_suggestions(int(str(var).split(")")[0]), word))
+        lablFreq.configure(text= str(number_of_suggestions(int(str(var).split(")")[0], word))))
+        # cal+=number_of_suggestions(int(str(var).split(")")[0], word))
+
 
 # ---------------topPanel START-----------------
 topPanel = Frame(ws, bg="#223441", bd=2)
@@ -188,7 +184,7 @@ checkBox = IntVar()
 t1 = Checkbutton(paneInputA, bg="#223441", fg="#c7ecee", font=("times", 20), text="Search", variable=checkBox, onvalue=1, offvalue=0, command=print_selection)
 t1.pack(side=LEFT, anchor="e")
 
-Label(
+lablFreq= Label(
     paneInputA,
     text="Mistakes",
     bg="#223441",
@@ -196,7 +192,8 @@ Label(
     font=("times", 20),
     borderwidth=2,
     relief="flat",
-).pack(side=LEFT, padx=(0, x2), anchor="e")
+)
+lablFreq.pack(side=LEFT, padx=(0, x2), anchor="e")
 
 my_word = Entry(
     paneInputA,
@@ -296,6 +293,7 @@ Label(
     borderwidth=2,
     relief="flat",
 ).pack(side=LEFT, padx=(0, x2))
+
 my_entry = Entry(
     paneInput, width=w2, justify="left", font=("times", 20), bd=2, relief="ridge"
 )
@@ -315,6 +313,7 @@ Label(
     borderwidth=2,
     relief="flat",
 ).pack(side=LEFT, anchor="n", padx=(0, x2))
+
 text = Text(
     paneArea,
     state=NORMAL,
@@ -353,7 +352,6 @@ add_btn.pack(fill=BOTH, expand=True, side=BOTTOM)
 # ---------------mistakePane START-----------------
 # mistakePane= Frame(midPanel, bg='#223441')
 # mistakePane.pack(side=TOP, fill=BOTH)
-
 # ---------------mistakePane END-----------------
 
 # =====================================MISTAKE TABLE=====================================
@@ -393,11 +391,12 @@ def launch(obj):
 
         for item in fetch_matches(int(str(val).split(")")[0])):
             i += 1
-            if i % 2 == 0:
+            if (checkBox.get() == 1 and int(item[9]) == 1 and str(item[10]).replace("['", "").replace("']","").strip().upper() == my_word.get().upper()):
+                s= "sepecial"
+            elif i % 2 == 0:
                 s = "even"
             else:
                 s = "odd"
-
             tree.insert(
                 "",
                 "end",
@@ -408,6 +407,7 @@ def launch(obj):
 
         tree.tag_configure("odd", background="#b8e994")
         tree.tag_configure("even", background="#38ada9")
+        tree.tag_configure("sepecial", background="#ff5252")
 
     tree.pack()
 
