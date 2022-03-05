@@ -124,15 +124,13 @@ def postExam(
     print("results in database.db!!!")
     tool.close()
 
-
 def openSelected():
     reslist = list()
     seleccion = lb.curselection()
     for i in seleccion:
         entrada = lb.get(i)
         reslist.append(entrada)
-    for val in reslist:
-        launch(int(str(val).split(")")[0]), str(val).split(")")[1] + ")")
+    launch(reslist)
 
 
 def deleteSelected():
@@ -300,12 +298,13 @@ add_btn.pack(fill=BOTH, expand=True, side=BOTTOM)
 # ---------------mistakePane END-----------------
 
 # =====================================MISTAKE TABLE=====================================
-def launch(id, t):
-    global second
-    second = Toplevel(ws)
-    second.title(t)
-    second.geometry("1220x640")
-    second.config(bg="#223441")
+def launch(obj):
+    title= ""
+    global mistakes
+    mistakes = Toplevel(ws)
+    mistakes.title("title")
+    mistakes.geometry("1220x640")
+    mistakes.config(bg="#223441")
 
     s = ttk.Style()
     s.theme_use("clam")
@@ -313,7 +312,7 @@ def launch(id, t):
     s.configure("Treeview", font=("times", 14), rowheight=40)
 
     tree = ttk.Treeview(
-        second, column=("c1", "c2", "c3", "c4", "c5", "c6"), show="headings", height=15
+        mistakes, column=("c1", "c2", "c3", "c4", "c5", "c6"), show="headings", height=15
     )
 
     tree.column("# 1", anchor=CENTER)
@@ -329,26 +328,27 @@ def launch(id, t):
     tree.column("# 6", anchor=CENTER)
     tree.heading("# 6", text="Suggestions")  # 10
 
-    # Insert the data in Treeview widget
-    i = 0
-    # id=9
-    for item in fetch_matches(id):
-        i += 1
-        if i % 2 == 0:
-            s = "even"
-        else:
-            s = "odd"
+    for val in obj:
+        title+= str(val).split(")")[1]
+        i = 0
 
-        tree.insert(
-            "",
-            "end",
-            text=i,
-            values=(item[0], item[1], item[6], item[7], item[9], item[10]),
-            tags=(s,),
-        )
+        for item in fetch_matches(int(str(val).split(")")[0])):
+            i += 1
+            if i % 2 == 0:
+                s = "even"
+            else:
+                s = "odd"
 
-    tree.tag_configure("odd", background="#b8e994")
-    tree.tag_configure("even", background="#38ada9")
+            tree.insert(
+                "",
+                "end",
+                text=i,
+                values=(item[11], item[1], item[6], item[7], item[9], item[10]),
+                tags=(s,),
+            )
+
+        tree.tag_configure("odd", background="#b8e994")
+        tree.tag_configure("even", background="#38ada9")
 
     tree.pack()
 
