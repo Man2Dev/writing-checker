@@ -38,7 +38,6 @@ temp_date_time_finished = ""
 def newEx():
     name = my_entry.get()
     if name != "" and len(text.get("1.0", "end-1c")) != 0:
-        globals()["realCount"] += 1
         # save the exam name
         temp_exam_question_name = name
         # save the exam question
