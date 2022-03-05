@@ -5,20 +5,20 @@ from tkinter import Menu, messagebox, ttk
 import language_tool_python
 
 from database import (delete_exam, fetch_exams, fetch_matches, insert_exam,
-                      insert_match)
+                      insert_match, number_of_suggestions)
 
 tool = language_tool_python.LanguageTool("en-US")
 
 
 ws = Tk()
-ws.geometry("1000x250+500+200")
+ws.geometry("1100x300+410+200")
 ws.title("Exams")
 ws.config(bg="#223441")
 ws.resizable(width=False, height=False)
 # w/h (fill)
 h1 = 5
-w1 = 40
-h2 = 4
+w1 = 45
+h2 = 5
 w2 = 22
 # pad
 x1 = 5
@@ -126,20 +126,39 @@ def postExam(
 def openSelected():
     reslist = list()
     seleccion = lb.curselection()
-    for i in seleccion:
-        entrada = lb.get(i)
-        reslist.append(entrada)
-    launch(reslist)
+    if (checkBox.get() == 1):
+        checkSuggestions(my_word.get())
+    else:
+        for i in seleccion:
+            entrada = lb.get(i)
+            reslist.append(entrada)
+        launch(reslist)
 
 
 def deleteSelected():
-    tmp = list()
-    for i in lb.curselection()[::-1]:
-        tmp.append(lb.get(i))
-        lb.delete(i)
-        delete_exam(i)
-    for item in range(int(len(fetch_exams()))):
-        lb.itemconfig(item, bg="#c7ecee" if item % 2 == 0 else "#95afc0")
+    reslist = list()
+    seleccion = lb.curselection()
+    for j in seleccion:
+        entrada = lb.get(j)
+        lb.delete(j)
+        reslist.append(entrada)
+    for var in reslist:
+        try:
+            delete_exam(int(str(var).split(")")[0]))
+        except:
+            print()
+
+def checkSuggestions(word):
+    reslist = list()
+    seleccion = lb.curselection()
+    for j in seleccion:
+        entrada = lb.get(j)
+        reslist.append(entrada)
+    for var in reslist:
+        try:
+            print(number_of_suggestions(int(str(var).split(")")[0]), word))
+        except:
+            print()
 
 # ---------------topPanel START-----------------
 topPanel = Frame(ws, bg="#223441", bd=2)
@@ -151,8 +170,49 @@ openPanel = Frame(topPanel, bg="#223441", bd=2, relief="groove")
 openPanel.pack(side=LEFT, fill=BOTH)
 
 # TOP START
+paneInputA = Frame(openPanel, bg="#223441")
+paneInputA.pack(side=TOP, fill="x", padx=x2, pady=(y1Top, 0))
+
+def print_selection():
+    if (checkBox.get() == 1):
+        my_word.config(state='normal')
+        my_word.delete(0, "end")
+    elif (checkBox.get() == 0):
+        my_word.delete(0, "end")
+        my_word.config(state='disabled')
+    else:
+        my_word.config(state='disabled')
+
+# Define a Checkbox
+checkBox = IntVar()
+t1 = Checkbutton(paneInputA, bg="#223441", fg="#c7ecee", font=("times", 20), text="Search", variable=checkBox, onvalue=1, offvalue=0, command=print_selection)
+t1.pack(side=LEFT, anchor="e")
+
+Label(
+    paneInputA,
+    text="Mistakes",
+    bg="#223441",
+    fg="#c7ecee",
+    font=("times", 20),
+    borderwidth=2,
+    relief="flat",
+).pack(side=LEFT, padx=(0, x2), anchor="e")
+
+my_word = Entry(
+    paneInputA,
+    justify="left",
+    font=("times", 20),
+    bd=2,
+    width=int(w1/1.5),
+    relief="ridge",
+    state='disabled'
+)
+my_word.pack(side=TOP, anchor="e")
+# TOP END
+
+# TOP START
 topLPan = Frame(openPanel, bg="#223441")
-topLPan.pack(side=TOP, fill="x", padx=x1, pady=(y1Top, 0))
+topLPan.pack(side=TOP, fill="x", padx=x1, pady=(y1, 0))
 
 lb = Listbox(
     topLPan,
@@ -365,8 +425,8 @@ def startExam(temp_exam_question_name, temp_exam_question, temp_date_time_create
         )
     except:
         print("err!!!")
-    w = "700"
-    h = "600"
+    w = "900"
+    h = "700"
     window.geometry(w + "x" + h)
     window.config(bg="#345")
 
@@ -402,7 +462,7 @@ def startExam(temp_exam_question_name, temp_exam_question, temp_date_time_create
         font=("Digital-7", 20),
         relief=SOLID,
     )
-    Time.pack(side=LEFT, fill=BOTH, anchor="nw", expand=True)
+    Time.pack(side=TOP, fill=BOTH, anchor="n", expand=True)
 
     def Update():
         now = datetime.now()

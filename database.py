@@ -108,10 +108,8 @@ def number_of_suggestions(exam_id, word):
     rows = cur.fetchall()
     return len(rows)
 
-delete_exam(1)
 
-
-# return a dictionary of each ruleIssue and number of its occurence 
+# return a dictionary of each ruleIssue and number of its occurence
 def number_of_ruleIssues(exam_id):
     cur.execute(f"SELECT ruleIssue, COUNT(*) as COUNT from Match GROUP BY ruleIssue")
     rows = cur.fetchall()
@@ -121,4 +119,3 @@ def number_of_ruleIssues(exam_id):
 # d = {'misspelling': 2, 'typographical': 1}
 
 # print(d['misspelling'])
-
