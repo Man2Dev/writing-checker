@@ -34,9 +34,6 @@ temp_exam_answer = ""
 temp_date_time_created = ""
 temp_date_time_finished = ""
 
-global realCount
-realCount = len(fetch_exams())
-
 
 def newEx():
     name = my_entry.get()
@@ -139,14 +136,13 @@ def openSelected():
 
 
 def deleteSelected():
-    globals()["realCount"] -= len(lb.curselection())
     tmp = list()
     for i in lb.curselection()[::-1]:
         tmp.append(lb.get(i))
         lb.delete(i)
-    for item in range(int(realCount)):
+        delete_exam(i)
+    for item in range(int(len(fetch_exams()))):
         lb.itemconfig(item, bg="#c7ecee" if item % 2 == 0 else "#95afc0")
-
 
 # ---------------topPanel START-----------------
 topPanel = Frame(ws, bg="#223441", bd=2)
