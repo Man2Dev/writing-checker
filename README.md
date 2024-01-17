@@ -4,7 +4,8 @@
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-# Writing Checker - A Simple Tool to Improve Your Writing Skills
+# Writing Checker
+# A Simple Tool to Improve Your Writing Skills
 
 ## Overview
 Writing Checker is a simple tool designed to help you improve your writing skills by providing real-time feedback on grammar, spelling, and style. This project uses the language-tool-python library to perform language checks and offers a user-friendly interface to interact with the system.
