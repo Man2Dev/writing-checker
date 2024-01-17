@@ -27,10 +27,12 @@ To get started with Writing Checker, follow these steps:
 
 Install the required packages: You will need to install language-tool-python and any other required dependencies. You can install them using pip:
 
+```
 git clone https://github.com/Man2Dev/writing-checker.git
 cd writing-checker
 pip install -r requirements.txt
 python main.py
+```
 Use the application: Once the application is running, you can start using it to check your writing. Simply paste or type your text into the input area, and the application will provide real-time feedback on grammar, spelling, and style.
 
 * Note: you will need language-tools running locally on machine or, on container.
